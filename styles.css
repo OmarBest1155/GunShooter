@@ -14,3 +14,191 @@ body {
     height: 100vh;
     display: block;
 }
+
+#waveBar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 80px;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    animation: hover 4s infinite ease-in-out;
+}
+
+.waveInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.waveNumber {
+    color: #00ff00;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    letter-spacing: 4px;
+    position: relative;
+    animation: textGlow 2s infinite;
+}
+
+.waveProgress {
+    height: 25px;
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+.progressBlocks {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, 
+        #1a1a1a,
+        #333333 50%,
+        #1a1a1a
+    );
+    position: relative;
+    transition: width 0.3s ease;
+}
+
+.progressBlocks::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 24px,
+        rgba(0, 255, 0, 0.1) 24px,
+        rgba(0, 255, 0, 0.1) 25px
+    );
+}
+
+@keyframes hover {
+    0%, 100% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #333;
+    pointer-events: none;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.game-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    padding: 15px 30px;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: buttonHover 4s infinite ease-in-out;
+}
+
+.game-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(51, 51, 51, 0.2) 50%,
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.game-button:hover::before {
+    opacity: 1;
+}
+
+.game-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.button-text {
+    color: #00ff00;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    position: relative;
+    z-index: 1;
+    animation: textPulse 2s infinite;
+}
+
+.game-button:hover .button-text {
+    animation: textGlitch 0.3s infinite;
+}
+
+@keyframes buttonHover {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); }
+    50% { text-shadow: 0 0 20px rgba(0, 255, 0, 0.9), 0 0 30px rgba(0, 255, 0, 0.5); }
+}
+
+@keyframes textPulse {
+    0%, 100% { 
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    }
+    50% { 
+        transform: scale(1.05);
+        text-shadow: 0 0 15px rgba(0, 255, 0, 0.9), 0 0 20px rgba(0, 255, 0, 0.5);
+    }
+}
+
+@keyframes textGlitch {
+    0% {
+        transform: translate(0);
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    }
+    25% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #0ff, 2px 2px #f00;
+    }
+    50% {
+        transform: translate(2px, -2px);
+        text-shadow: 2px 0 #0ff, -2px -2px #f00;
+    }
+    75% {
+        transform: translate(-2px, 2px);
+        text-shadow: -2px 0 #0ff, 2px 2px #f00;
+    }
+    100% {
+        transform: translate(0);
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    }
+}

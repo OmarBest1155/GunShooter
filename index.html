@@ -2,9 +2,24 @@
 <html>
 <head>
     <title>2D Gun Shooter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="upgradeBtn" class="game-button">
+        <span class="button-text">UPGRADE</span>
+    </div>
+    <div id="waveBar">
+        <div class="waveInfo">
+            <span class="waveNumber">WAVE 1</span>
+        </div>
+        <div class="waveProgress">
+            <div class="progressBlocks"></div>
+            <div class="progressGlow"></div>
+        </div>
+    </div>
     <canvas id="gameCanvas"></canvas>
     <script src="game.js"></script>
 </body>
